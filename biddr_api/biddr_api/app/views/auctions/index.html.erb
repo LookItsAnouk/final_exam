@@ -1,0 +1,16 @@
+<%= render "navBar" %>
+
+<div class="card-columns" >
+  <% @auctions.each do |auction| %>
+    <div class="card" style="background-color: #ffffe6">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to auction.title, auction%></h5>
+        <p class="card-text"><%= auction.body %></p>
+        <p class="card-text">
+        Created By: <%= auction.user.first_name %> </p>
+
+        </p>
+      </div>    
+    </div>  
+  <% end %>
+</div>
