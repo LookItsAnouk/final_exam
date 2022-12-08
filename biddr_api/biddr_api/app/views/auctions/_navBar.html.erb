@@ -1,0 +1,40 @@
+    <nav class="navbar navbar-expand-med navbar-light bg-light">
+    <a class="navbar-brand" href="./" style ="margin-left: 5px">
+    <img src="https://cdn-icons-png.flaticon.com/512/2570/2570192.png" width="50" height="50" class="d-inline-block align-top" alt="" style ="margin-left: 25px">
+     <p>Biddr
+     </p>
+    </a>
+    <p> <% flash.each do |type, message| %>
+                <div class="alert alert-info" role=alert >
+                <%= type + "--" + message %>
+                </div>
+            <% end %> <p>
+
+  <div class=" navbar navbar-expand ">
+    <ul class="navbar-nav mr-auto">
+        <div class=" navbar navbar-expand ">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/auctions" style="color: black ;">Home</a>
+                 </li>
+                 <li class="nav-item active">
+                    <a class="nav-link" href="/auctions/new" style="color: black ;">New Auction</a>
+                </li>
+                <%if user_signed_in? %>
+                    <span class="navbar-text" style ="margin-right: 5px">
+                    Hello <%=current_user.first_name %> 
+                    </span>
+                    <span class="navbar-text" >
+                    <%= button_to "Logout", sessions_path, method: :delete,
+                    data: {confirm: "are you sure you want to log out?"}%>
+                    </span>
+                <% else %>
+                    <li class="navbar-text">
+                       <%=button_to "Login", new_sessions_path, method: :get %>
+                    </li>
+                    <li class="navbar-text" style ="margin-left: 5px">
+                        <%= button_to "Sign Up", new_user_path, method: :get  %>
+                    </li>
+                <% end %>
+  </div>
+</nav>

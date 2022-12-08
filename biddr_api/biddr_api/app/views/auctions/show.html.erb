@@ -1,0 +1,45 @@
+<%= render "navBar" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <h1><%= @auction.title %></h1>
+
+      <p><%= @auction.body %></p>
+
+      
+      <%= @bid.errors.full_messages.join(', ') %>
+
+      <% if user_signed_in? %>
+      Place a Bid:
+        <%= form_for [@auction, @bid] do |f| %>
+            <%= f.number_field :ammount %>
+
+            <%= f.submit %>
+        <% end %>
+      <% end %>
+      <br>
+
+      <h5 style="text-decoration-line: underline;"> Previous Bids </h5>
+      <% @auction.bids.each do |bid| %>
+          $ <%= bid.ammount %>
+          Created <%= time_ago_in_words(bid.created_at) %> ago 
+          <hr>
+      <% end %>
+    </div>
+    <div class="col-md">
+       <p>
+       Current Price: $<%= @auction.bids.maximum(:ammount) %>
+       <br>
+       Bidding Ends At: <%= @auction.end_date %>
+       <br>
+        <%# if (@auction.bids.maximum(:ammount) >= @auction.reserve_price) %>
+        Reserve Price Met
+        <%# else %>
+        Reserve Price Not Met
+       <%# end %> 
+       </p>
+    </div>
+  </div>
+</div>
+  

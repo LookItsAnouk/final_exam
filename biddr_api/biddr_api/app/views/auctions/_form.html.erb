@@ -1,0 +1,25 @@
+
+<%= form_for @auction do |f| %>
+  <div>
+    <%= f.label :title %>
+    <br>
+    <%= f.text_field :title, size: 50 %>
+  </div>
+  <div>
+    <%= f.label :body %>
+    <br>
+    <%= f.text_area :body, :size=>"50" %>
+  </div>
+  <div>
+   <%= f.label :end_date %>
+    <br>
+    <%= f.datetime_local_field :end_date, :size=>"50" %>
+  </div>
+  <div>
+    <%= f.label :reserve_price %>
+    <br>
+    <%= f.number_field :reserve_price, :size=>"50" %>
+  </div>
+  <br>
+  <%= f.submit %>
+<% end %>
